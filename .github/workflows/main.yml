@@ -5,7 +5,9 @@ on:
     types: [opened, reopened]
 
 jobs:
-  build:
+  cicd_test:
+    name: CICD_TEST
+
     runs-on: ubuntu-latest
 
     steps:
