@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  cicd_test:
+    name: feature_to_devlop
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Check if PR is from develop to main branch
+        run: |
+          if [ "${{ github.event.pull_request.base.ref }}" == "develop" ] && [ "${{ github.event.pull_request.head.ref }}" =~ ^feature/* ]; then
+            echo "Pull request from develop to main branch, continuing..."  
+          else
+            echo "Pull request not from develop to main branch, exiting with code 1"
+            exit 1
+          fi
