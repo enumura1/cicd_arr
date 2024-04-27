@@ -14,8 +14,8 @@ jobs:
       - name: Check:if PR is from feature to develop branch
         run: |
           if [ "${{ github.event.pull_request.base.ref }}" == "develop" ] && [[ "${{ github.event.pull_request.head.ref }}" =~ ^feature/.* ]]; then
-            echo "Pull request from develop to main branch"  
+            echo "Pull request from feature to develop branch"  
           else
-            echo "Pull request not from develop to main branch, exiting with code 1"
+            echo "Pull request not from feature to develop branch, exiting with code 1"
             exit 1
           fi
